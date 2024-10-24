@@ -18,6 +18,7 @@ import {
     PieChart,
     Pie,
     Cell,
+    ResponsiveContainer,
 } from "recharts";
 import { RootState } from "../store";
 import { setSelectedState } from "../store/covidSlice";
@@ -97,71 +98,78 @@ const CovidDashboard = () => {
 
             {/* Charts */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Card>
+                <Card className="w-full">
                     <CardHeader>
                         <CardTitle>Distribution</CardTitle>
                     </CardHeader>
-                    <CardContent>
-                        <PieChart width={400} height={300}>
-                            <Pie
-                                data={getPieData()}
-                                cx={200}
-                                cy={150}
-                                innerRadius={60}
-                                outerRadius={80}
-                                paddingAngle={5}
-                                dataKey="value"
-                            >
-                                {getPieData().map((entry, index) => (
-                                    <Cell
-                                        key={`cell-${index}`}
-                                        fill={COLORS[index % COLORS.length]}
-                                    />
-                                ))}
-                            </Pie>
-                            <Tooltip />
-                            <Legend />
-                        </PieChart>
+                    <CardContent className="h-[300px]">
+                        <ResponsiveContainer width="100%" height="100%">
+                            <PieChart>
+                                <Pie
+                                    data={getPieData()}
+                                    cx="50%"
+                                    cy="50%"
+                                    innerRadius={60}
+                                    outerRadius={80}
+                                    paddingAngle={5}
+                                    dataKey="value"
+                                >
+                                    {getPieData().map((entry, index) => (
+                                        <Cell
+                                            key={`cell-${index}`}
+                                            fill={COLORS[index % COLORS.length]}
+                                        />
+                                    ))}
+                                </Pie>
+                                <Tooltip />
+                                <Legend />
+                            </PieChart>
+                        </ResponsiveContainer>
                     </CardContent>
                 </Card>
 
-                <Card>
+                <Card className="w-full">
                     <CardHeader>
                         <CardTitle>Timeline</CardTitle>
                     </CardHeader>
-                    <CardContent>
-                        <LineChart
-                            width={400}
-                            height={300}
-                            data={currentData.timeline}
-                            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-                        >
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="date" />
-                            <YAxis />
-                            <Tooltip />
-                            <Legend />
-                            <Line
-                                type="monotone"
-                                dataKey="active"
-                                stroke="#8884d8"
-                            />
-                            <Line
-                                type="monotone"
-                                dataKey="recovered"
-                                stroke="#82ca9d"
-                            />
-                            <Line
-                                type="monotone"
-                                dataKey="deaths"
-                                stroke="#ff7300"
-                            />
-                            <Line
-                                type="monotone"
-                                dataKey="total"
-                                stroke="#0088FE"
-                            />
-                        </LineChart>
+                    <CardContent className="h-[300px]">
+                        <ResponsiveContainer width="100%" height="100%">
+                            <LineChart
+                                data={currentData.timeline}
+                                margin={{
+                                    top: 5,
+                                    right: 30,
+                                    left: 20,
+                                    bottom: 5,
+                                }}
+                            >
+                                <CartesianGrid strokeDasharray="3 3" />
+                                <XAxis dataKey="date" />
+                                <YAxis />
+                                <Tooltip />
+                                <Legend />
+                                <Line
+                                    type="monotone"
+                                    dataKey="active"
+                                    stroke="#8884d8"
+                                />
+                                <Line
+                                    type="monotone"
+                                    dataKey="recovered"
+                                    stroke="#82ca9d"
+                                />
+                                <Line
+                                    type="monotone"
+                                    dataKey="deaths"
+                                    stroke="#ff7300"
+                                />
+                                <Line
+                                    type="monotone"
+                                    dataKey="total"
+                                    stroke="#0088FE"
+                                />
+                            </LineChart>
+                        </ResponsiveContainer>
                     </CardContent>
                 </Card>
             </div>

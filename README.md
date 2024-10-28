@@ -17,3 +17,6 @@ This is a React-based dashboard application that visualizes COVID-19 data for In
 - **Recharts**: Charting library for pie and line charts
 - **Leaflet**: Map rendering for geographic case data
 - **Webpack**: Module bundler
+
+## Live Demo
+https://covid-19-dashboard-khaki.vercel.app/

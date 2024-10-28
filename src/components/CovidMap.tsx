@@ -1,13 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { MapContainer, TileLayer, Circle, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
 
 const CovidMap: React.FC = () => {
-    const { data, selectedState } = useSelector(
-        (state: RootState) => state.covid
-    );
+    const { data } = useSelector((state: RootState) => state.covid);
 
     // Calculate circle radius based on active cases
     const getCircleRadius = (activeCases: number) => {

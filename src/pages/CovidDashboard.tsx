@@ -114,12 +114,20 @@ const CovidDashboard = () => {
                                     paddingAngle={5}
                                     dataKey="value"
                                 >
-                                    {getPieData().map((entry, index) => (
-                                        <Cell
-                                            key={`cell-${index}`}
-                                            fill={COLORS[index % COLORS.length]}
-                                        />
-                                    ))}
+                                    {getPieData().map(
+                                        (entry, index) =>
+                                            entry && (
+                                                <Cell
+                                                    key={`cell-${index}`}
+                                                    fill={
+                                                        COLORS[
+                                                            index %
+                                                                COLORS.length
+                                                        ]
+                                                    }
+                                                />
+                                            )
+                                    )}
                                 </Pie>
                                 <Tooltip />
                                 <Legend />
